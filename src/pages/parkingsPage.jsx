@@ -1,23 +1,22 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import ParkingCard from "../components/parkingCard";
 import { getParkings } from "../api/parkingAPI";
-import { Images } from "../assets/js/parkingImages";
 
-export default class parkingsList extends Component {
+export default class ParkingsPage extends Component {
   constructor() {
     super();
     this.state = {
       parkings: [],
       loading: true,
+      capacity: null,
       isParked: null
     };
 
     this.setParked = this.setParked.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setParkings();
   }
 
@@ -35,24 +34,26 @@ export default class parkingsList extends Component {
   }
 
   setParked(e) {
-    if (e.target.value == this.state.isParked) {
+    if (e.target.value === this.state.isParked) {
       this.setState({
-        isParked: null
+        isParked: null,
+        capacity: this.state.capacity - 1
       });
     } else {
       this.setState({
-        isParked: e.target.value
+        isParked: e.target.value,
+        capacity: this.state.capacity + 1
       });
     }
   }
 
   render() {
-    const { parkings, isParked } = this.state;
+    const { parkings, isParked, capacity } = this.state;
     return (
       <div>
-        <header>
+        <div className="header parkings">
           <h1>Public parkings Ghent</h1>
-        </header>
+        </div>
         <div className="container">
           <div className="row">
             {parkings.map(parking => (
