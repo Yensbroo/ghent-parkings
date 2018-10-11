@@ -1,0 +1,77 @@
+body {
+  background: #F7F5FB;
+}
+
+button:focus {
+  outline: none;
+}
+
+header {
+  background: #13505B;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1 {
+  color: white;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.parkingCard {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  border-radius: 6px;
+  background: white;
+}
+
+.parkingCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+}
+
+
+.parkingInfo {
+  padding: 20px;
+}
+
+.status strong,
+.parkingInfo a {
+  color: #13505B;
+}
+
+.parkingInfo a {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.parkingInfo p {
+  text-align: center;
+}
+
+.status {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.status button {
+  border-radius: 6px;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.parked {
+  background: #D1495B;
+}
+
+.not-parked {
+  background: #00798C;
+}

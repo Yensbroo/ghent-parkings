@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import ParkingsList from "./pages/parkingsList";
+import ParkingsList from "./pages/parkingsPage";
 
 class App extends Component {
   render() {
