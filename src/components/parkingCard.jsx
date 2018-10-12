@@ -19,7 +19,7 @@ const ParkingCard = ({ parking, park, state, capacity }) => {
               {parking.parkingStatus.open ? "Open" : "Gesloten"}
             </p>
             <button className={state == parking.id ? "parked" : "not-parked"} onClick={park} value={parking.id}>
-              {state === parking.id ? "Leave" : "Park here"}
+              {state == parking.id ? "Leave" : "Park here"}
             </button>
           </div>
         </div>
