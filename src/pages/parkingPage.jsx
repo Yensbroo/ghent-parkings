@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getParkings } from "../api/parkingAPI";
-import ParkingDetail from "../components/parkingDetail";
+import ParkingDetail from "../components/ParkingDetail";
 
 export default class ParkingPage extends Component {
   constructor(props) {

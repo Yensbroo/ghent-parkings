@@ -11,7 +11,10 @@
     "react-dom": "^16.5.2",
     "react-leaflet": "^2.1.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.4"
+    "react-scripts": "2.0.4",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,6 +34,7 @@
   "devDependencies": {
     "enzyme-adapter-react-16": "^1.6.0",
     "jest": "^23.6.0",
-    "react-test-renderer": "^16.5.2"
+    "react-test-renderer": "^16.5.2",
+    "redux-devtools": "^3.4.1"
   }
 }

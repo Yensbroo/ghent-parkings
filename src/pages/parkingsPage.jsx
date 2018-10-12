@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import ParkingCard from "../components/parkingCard";
+import ParkingCard from "../components/ParkingCard";
 import { getParkings } from "../api/parkingAPI";
 
 export default class ParkingsPage extends Component {
