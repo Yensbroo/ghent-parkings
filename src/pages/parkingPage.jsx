@@ -1,46 +1,49 @@
 import React, { Component } from "react";
-import { getParkings } from "../api/parkingAPI";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getParking } from "../actions/parkingActions";
+//import { getParkings } from "../api/parkingAPI";
 import ParkingDetail from "../components/ParkingDetail";
 
-export default class ParkingPage extends Component {
+class ParkingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parking: [],
-      isParked: null,
-      loading: true
+      isParked: null
     };
   }
 
   componentDidMount() {
-    this.setParking();
+    this.props.getParking(this.props.match.params.id);
   }
 
-  setParking() {
-    getParkings()
-      .then(res => {
-        let data = res.data;
-        data = data.filter(parking => {
-          return parking.id == this.props.match.params.id;
-        });
-        this.setState({
-          parking: data,
-          loading: false
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
   render() {
-    const { parking } = this.state;
+    const { parkings, loading } = this.props.parking;
+    const parking = parkings.map(data => {
+      return <ParkingDetail key={data.id} parking={data} />;
+    });
+    let parkingContent;
 
-    return (
-      <div>
-        {parking.map(item => (
-          <ParkingDetail key={item.id} parking={item} />
-        ))}
-      </div>
-    );
+    if (parkings === null || loading) {
+      parkingContent = <div>Parkings loading</div>;
+    } else {
+      parkingContent = parking;
+    }
+    return <div>{parkingContent}</div>;
   }
 }
+
+ParkingPage.propTypes = {
+  parking: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  parking: state.parking
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    getParking
+  }
+)(ParkingPage);

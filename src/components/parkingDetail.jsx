@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Images } from "../assets/js/parkingImages";
 
 const ParkingDetail = ({ parking }) => {
@@ -8,7 +9,10 @@ const ParkingDetail = ({ parking }) => {
         <h1>{parking.name}</h1>
       </div>
       <div className="container">
-        <div className="row">
+        <Link to="/" className="back">
+          Terug
+        </Link>
+        <div className="row mt-4">
           <div className="col-lg-6">
             <img className="img-fluid" src={Images[parking.id]} alt="" />
           </div>
@@ -17,28 +21,53 @@ const ParkingDetail = ({ parking }) => {
               <div className="col-lg-6 mb-3">
                 <div className="parkingItem">
                   <p>
-                    Address: <br />
+                    <strong>Address:</strong> <br />
                     {parking.address}
                   </p>
                 </div>
               </div>
               <div className="col-lg-6 mb-3">
                 <div className="parkingItem">
-                  <p>{parking.contactInfo}</p>
+                  <p>
+                    <strong>Contact:</strong> <br />
+                    {parking.contactInfo}
+                  </p>
                 </div>
               </div>
               <div className="col-lg-6 mb-3">
                 <div className="parkingItem">
-                  <p>{parking.parkingStatus.open ? "Open" : "Closed"}</p>
+                  <p>
+                    <strong>
+                      Status: <br />
+                    </strong>
+                    {parking.parkingStatus.open ? "Open" : "Closed"}
+                  </p>
                 </div>
               </div>
               <div className="col-lg-6 mb-3">
-                <button className="parkBtn">Park here</button>
+                <div className="parkingItem">
+                  <p>
+                    <strong>Capacity: </strong> <br />
+                    {parking.parkingStatus.availableCapacity}/{parking.parkingStatus.totalCapacity}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6" />
+            <h3 className="col-lg-12 mb-3">Openingsuren</h3>
+            <div className="col-lg-12 d-flex">
+              {parking.openingTimes.map(item => {
+                return item.days.map(day => {
+                  return (
+                    <p key={day} className="day">
+                      <strong>{day}:</strong> <br />
+                      from {item.from} <br /> to {item.to}
+                    </p>
+                  );
+                });
+              })}
+            </div>
           </div>
         </div>
       </div>

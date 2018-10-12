@@ -83,7 +83,6 @@ button:focus {
   justify-content: center;
   align-items: center;
   background: white;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
   border-radius: 4px;
 }
 
@@ -97,4 +96,22 @@ button:focus {
   border-radius: 4px;
   width: 100%;
   height: 100%;
+}
+
+.back {
+  padding: 8px 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  border-radius: 4px;
+  color: #13505B;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.day {
+  background: white;
+  text-align: center;
+  margin-right: 20px;
+  min-width: 144px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  padding: 20px;
 }

@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getParkings } from "../actions/parkingActions";
 
 import ParkingCard from "../components/ParkingCard";
-import { getParkings } from "../api/parkingAPI";
+//import { getParkings } from "../api/parkingAPI";
 
-export default class ParkingsPage extends Component {
+class ParkingsPage extends Component {
   constructor() {
     super();
     this.state = {
-      parkings: [],
-      loading: true,
       capacity: null,
       isParked: null
     };
@@ -17,38 +18,26 @@ export default class ParkingsPage extends Component {
   }
 
   componentDidMount() {
-    this.setParkings();
-  }
-
-  setParkings() {
-    getParkings()
-      .then(res => {
-        this.setState({
-          parkings: res.data,
-          loading: false
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.getParkings();
   }
 
   setParked(e) {
+    const { parkings } = this.props.parking;
     if (e.target.value === this.state.isParked) {
       this.setState({
-        isParked: null,
-        capacity: this.state.capacity - 1
+        isParked: null
       });
     } else {
       this.setState({
-        isParked: e.target.value,
-        capacity: this.state.capacity + 1
+        isParked: e.target.value
       });
     }
   }
 
   render() {
-    const { parkings, isParked, capacity } = this.state;
+    const { parkings } = this.props.parking;
+    console.log(parkings);
+    const { isParked, capacity } = this.state;
     return (
       <div>
         <div className="header parkings">
@@ -65,3 +54,18 @@ export default class ParkingsPage extends Component {
     );
   }
 }
+
+ParkingsPage.propTypes = {
+  parking: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  parking: state.parking
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    getParkings
+  }
+)(ParkingsPage);
