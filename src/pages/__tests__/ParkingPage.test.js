@@ -3,8 +3,7 @@ import { shallow } from 'enzyme';
 
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import ParkingPage from '../ParkingPage'
-import ParkingDetail from '../../components/ParkingDetail';
+import ParkingPage from '../parkingPage'
 import * as parking from '../../data/parkings.json';
 
 const middlewares = [thunk]

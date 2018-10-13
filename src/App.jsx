@@ -5,8 +5,8 @@ import "./App.css";
 
 import store from "./store";
 
-import ParkingsPage from "./pages/ParkingsPage";
-import ParkingPage from "./pages/ParkingPage";
+import ParkingsPage from "./pages/parkingsPage";
+import ParkingPage from "./pages/parkingPage";
 
 class App extends Component {
   render() {
