@@ -11,8 +11,15 @@ const ParkingCard = ({ parking, park, state, capacity }) => {
           <Link to={`/${parking.id}`}>{parking.name}</Link>
           <div className="status">
             <p>
-              <strong>Capacity:</strong> <br /> {parking.parkingStatus.availableCapacity}/
-              {parking.parkingStatus.totalCapacity}
+              <strong>Capacity:</strong> <br />{" "}
+              {capacity
+                .filter(c => {
+                  return c.id == parking.id;
+                })
+                .map(c => {
+                  return c.capacity;
+                })}
+              /{parking.parkingStatus.totalCapacity}
             </p>
             <p className={parking.parkingStatus.open ? "open" : "closed"}>
               <strong>status:</strong> <br />

@@ -10,33 +10,57 @@ class ParkingsPage extends Component {
   constructor() {
     super();
     this.state = {
-      capacity: null,
+      capacity: [],
       isParked: null
     };
 
     this.setParked = this.setParked.bind(this);
+    this.setCapacity = this.setCapacity.bind(this);
   }
 
   componentDidMount() {
     this.props.getParkings();
   }
 
-  setParked(e) {
+  componentDidUpdate(prevProps) {
+    if (this.props.parking !== prevProps.parking) {
+      this.setCapacity();
+    }
+  }
+
+  setCapacity() {
     const { parkings } = this.props.parking;
+    let capacity = [];
+
+    parkings.map(parking => {
+      return capacity.push({ id: parking.id, capacity: parking.parkingStatus.availableCapacity });
+    });
+    this.setState({
+      capacity: capacity
+    });
+  }
+
+  setParked(e) {
+    let arr = this.state.capacity;
+    const newCapacity = arr.findIndex(parking => parking.id == e.target.value);
+
     if (e.target.value === this.state.isParked) {
+      arr[newCapacity].capacity = arr[newCapacity].capacity + 1;
       this.setState({
-        isParked: null
+        isParked: null,
+        capacity: arr
       });
     } else {
+      arr[newCapacity].capacity = arr[newCapacity].capacity - 1;
       this.setState({
-        isParked: e.target.value
+        isParked: e.target.value,
+        capacity: arr
       });
     }
   }
 
   render() {
     const { parkings } = this.props.parking;
-    console.log(parkings);
     const { isParked, capacity } = this.state;
     return (
       <div>
@@ -46,7 +70,7 @@ class ParkingsPage extends Component {
         <div className="container">
           <div className="row">
             {parkings.map(parking => (
-              <ParkingCard key={parking.id} parking={parking} park={this.setParked} state={isParked} />
+              <ParkingCard parking={parking} park={this.setParked} state={isParked} capacity={capacity} />
             ))}
           </div>
         </div>
