@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getParking } from "../actions/parkingActions";
-import ParkingDetail from "../components/ParkingDetail";
+import ParkingDetail from "../components/parkingDetail";
 
 class ParkingPage extends Component {
   constructor(props) {
