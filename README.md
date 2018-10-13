@@ -26,7 +26,7 @@ Install dependencies
 yarn install
 ```
 
-run the application
+Run the application
 
 ```
 yarn start
