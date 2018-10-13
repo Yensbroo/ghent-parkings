@@ -30,8 +30,4 @@ describe('ParkingPage component', () => {
     expect(wrapper.length).toBe(1);
   })
 
-  it('has ParkingDetail component', () => {
-    expect(wrapper.find(ParkingDetail).length).toBe(1);
-  })
-
 })
