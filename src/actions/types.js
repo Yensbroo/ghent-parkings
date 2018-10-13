@@ -1,2 +1,1 @@
 export const GET_PARKINGS = 'GET_PARKINGS';
-export const PARKINGS_LOADING = 'PARKINGS_LOADING';

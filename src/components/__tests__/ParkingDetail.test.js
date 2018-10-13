@@ -2,8 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ParkingDetail from '../ParkingDetail';
 import * as parking from '../../data/parkings.json';
-import * as capacity from '../../data/capacity.json';
-
 
 
 

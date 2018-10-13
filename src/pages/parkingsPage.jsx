@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { getParkings } from "../actions/parkingActions";
 
 import ParkingCard from "../components/ParkingCard";
-//import { getParkings } from "../api/parkingAPI";
 
 export class ParkingsPage extends Component {
   constructor() {
@@ -23,6 +22,7 @@ export class ParkingsPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    // run setCapacity function after the data is loaded and component is rendered
     if (this.props.parking !== prevProps.parking) {
       this.setCapacity();
     }
@@ -32,9 +32,12 @@ export class ParkingsPage extends Component {
     const { parkings } = this.props.parking;
     let capacity = [];
 
+    // for each parking push the id and capacity to a new array
     parkings.map(parking => {
       return capacity.push({ id: parking.id, capacity: parking.parkingStatus.availableCapacity });
     });
+
+    // store the new array in the capacity state
     this.setState({
       capacity: capacity
     });
@@ -42,8 +45,12 @@ export class ParkingsPage extends Component {
 
   setParked(e) {
     let arr = this.state.capacity;
+    // Find index of the target value in the array
     const newCapacity = arr.findIndex(parking => parking.id == e.target.value);
 
+    // if the value of the parking is equal to the value stored in the isParked state
+    // add 1 to the given parking's capacity
+    // else subtract 1 from the capacity
     if (e.target.value === this.state.isParked) {
       arr[newCapacity].capacity = arr[newCapacity].capacity + 1;
       this.setState({
@@ -62,7 +69,7 @@ export class ParkingsPage extends Component {
   render() {
     const { parkings } = this.props.parking;
     const { isParked, capacity } = this.state;
-    console.log(capacity);
+
     return (
       <div>
         <div className="header parkings">
@@ -94,11 +101,9 @@ const mapStateToProps = state => ({
   parking: state.parking
 });
 
-const mapDispatchToProps = {
-  getParkings
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    getParkings
+  }
 )(ParkingsPage);

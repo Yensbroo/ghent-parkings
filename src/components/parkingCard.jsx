@@ -13,6 +13,7 @@ const ParkingCard = ({ parking, park, state, capacity }) => {
             <p>
               <strong>Capacity:</strong> <br />{" "}
               {capacity
+                //get capacity from state and filter to parking with the same id
                 .filter(c => {
                   return c.id == parking.id;
                 })

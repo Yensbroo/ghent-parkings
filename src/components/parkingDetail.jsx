@@ -10,7 +10,7 @@ const ParkingDetail = ({ parking }) => {
       </div>
       <div className="container">
         <Link to="/" className="back">
-          Terug
+          Back
         </Link>
         <div className="row mt-4">
           <div className="col-lg-6">
@@ -55,8 +55,8 @@ const ParkingDetail = ({ parking }) => {
             </div>
           </div>
           <div className="row">
-            <h3 className="col-lg-12 mb-3">Openingsuren</h3>
-            <div className="col-lg-12 d-flex">
+            <h3 className="col-lg-12 mb-3">Opening hours</h3>
+            <div className="col-lg-12 d-flex mb-3">
               {parking.openingTimes.map(item => {
                 return item.days.map(day => {
                   return (

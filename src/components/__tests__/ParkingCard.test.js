@@ -24,6 +24,4 @@ describe('ParkingCard', () => {
     expect(wrapper.find('button').length).toBe(1);
   })
 
-
-
 })

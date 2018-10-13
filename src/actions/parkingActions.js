@@ -1,15 +1,13 @@
 import {
   GET_PARKINGS,
-  PARKINGS_LOADING
 } from './types';
 const axios = require('axios');
 
 const apiURL = 'https://datatank.stad.gent/4/mobiliteit/bezettingparkingsrealtime.json';
 
 
+// get the parking data from API
 export const getParkings = () => dispatch => {
-  dispatch(setParkingsLoading());
-
   axios
     .get(apiURL)
     .then(res => {
@@ -24,15 +22,14 @@ export const getParkings = () => dispatch => {
       }))
 }
 
+// get parking data from api and filter to one parking matching the parameter
 export const getParking = (id) => dispatch => {
-  dispatch(setParkingsLoading());
   axios
     .get(apiURL)
     .then(res => {
       let data = res.data.filter(parking => {
         return parking.id == id
       });
-
       dispatch({
         type: GET_PARKINGS,
         payload: data
@@ -42,10 +39,4 @@ export const getParking = (id) => dispatch => {
         type: GET_PARKINGS,
         payload: null
       }))
-}
-
-export const setParkingsLoading = () => dispatch => {
-  dispatch({
-    type: PARKINGS_LOADING
-  })
 }
