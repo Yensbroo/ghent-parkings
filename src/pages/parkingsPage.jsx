@@ -6,7 +6,7 @@ import { getParkings } from "../actions/parkingActions";
 import ParkingCard from "../components/ParkingCard";
 //import { getParkings } from "../api/parkingAPI";
 
-class ParkingsPage extends Component {
+export class ParkingsPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -62,6 +62,7 @@ class ParkingsPage extends Component {
   render() {
     const { parkings } = this.props.parking;
     const { isParked, capacity } = this.state;
+    console.log(capacity);
     return (
       <div>
         <div className="header parkings">
@@ -70,7 +71,13 @@ class ParkingsPage extends Component {
         <div className="container">
           <div className="row">
             {parkings.map(parking => (
-              <ParkingCard parking={parking} park={this.setParked} state={isParked} capacity={capacity} />
+              <ParkingCard
+                key={parking.id}
+                parking={parking}
+                park={this.setParked}
+                state={isParked}
+                capacity={capacity}
+              />
             ))}
           </div>
         </div>
@@ -87,9 +94,11 @@ const mapStateToProps = state => ({
   parking: state.parking
 });
 
+const mapDispatchToProps = {
+  getParkings
+};
+
 export default connect(
   mapStateToProps,
-  {
-    getParkings
-  }
+  mapDispatchToProps
 )(ParkingsPage);
