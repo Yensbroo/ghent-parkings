@@ -11,7 +11,7 @@ Ghent Parking App visualizes the parking data from Open Data Ghent.
 Clone the repository
 
 ```
-git clone https://github.com/Yensbroo/ghent-parkings
+git clone https://github.com/Yensbroo/ghent-parkings.git
 ```
 
 Go to folder destination
