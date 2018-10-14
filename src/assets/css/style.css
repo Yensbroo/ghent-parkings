@@ -78,6 +78,19 @@ button:focus {
   background: #00798C;
 }
 
+.parkingHours {
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  padding: 20px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+
+.parkingHours p {
+  padding-bottom: 3px;
+}
+
 .parkingItem {
   height: 183px;
   display: flex;
@@ -85,7 +98,9 @@ button:focus {
   align-items: center;
   background: white;
   border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
 }
+
 
 .parkingItem p {
   text-align: center;
